@@ -1,0 +1,88 @@
+### ex 1 
+
+paths:
+  /weather:
+    get:
+      tags:
+      - Current Weather Data
+      summary: "Call current weather data for one location"
+      description: "Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations."
+      operationId: CurrentWeatherData
+      parameters:
+        - $ref: '#/components/parameters/q'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/lon'
+        - $ref: '#/components/parameters/zip'
+        - $ref: '#/components/parameters/units'
+        - $ref: '#/components/parameters/lang'
+        - $ref: '#/components/parameters/mode'
+
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/200'
+        "404":
+          description: Not found response
+          content:
+            text/plain:
+              schema:
+                title: Weather not found
+                type: string
+                example: Not found
+                
+                
+### ex 2 
+
+paths:
+   /pets:
+    get:
+      description: Returns all pets from the system that the user has access to
+      responses:
+        '200':
+          description: A list of pets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pet'
+                  
+                  
+### ex 3 - Lesson 201 - with parameters 
+paths: 
+  /pets: 
+    get:
+      description: Returns pets based on ID
+      summary: Find pets by ID
+      operationId: getPetsById
+      responses:
+        '200':
+          description: pet response
+          content:
+            '*/*' :
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+        default:
+          description: error payload
+          content:
+            'text/html':
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+    parameters:
+    - name: id
+      in: path
+      description: ID of pet to use
+      required: true
+      schema:
+        type: array
+        items:
+          type: string  
+      style: simple
+
+  
