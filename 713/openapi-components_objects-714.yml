@@ -1,0 +1,84 @@
+// ex 1 - before and after - cr. swagger
+paths:
+  /users/{userId}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        ...
+      responses:
+        '200':
+          description: A single user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+
+
+
+
+
+
+
+
+
+
+
+
+paths:
+  /users/{userId}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        ...
+      responses:
+        '200':
+          description: A single user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+
